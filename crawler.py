@@ -16,5 +16,4 @@ def downloadhtml(url, user_agent="Mozilla/5.0", trytimes=2):
 	return html
 
 
-print(downloadhtml("https://www.qidian.com/rank/signnewbook?chn=21&style=2&page=1"))
-
+print(downloadhtml("https://github.com/xidianzyf?tab=repositories"))
