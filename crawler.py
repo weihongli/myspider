@@ -1,7 +1,7 @@
 import urllib.request
 
 
-def downloadhtml(url, user_agent="Mozilla/5.0", trytimes=2):
+def downloadhtml(url, user_agent="Mozilla/5.0", trytimes=3):
 	print("Downloading!")
 	headers = {"User-agent": user_agent}
 	request = urllib.request.Request(url, headers=headers)
@@ -14,6 +14,3 @@ def downloadhtml(url, user_agent="Mozilla/5.0", trytimes=2):
 			if hasattr(e, 'code') and 500 <= e.code < 600:
 				downloadhtml(request, trytimes-1)
 	return html
-
-
-print(downloadhtml("https://github.com/xidianzyf?tab=repositories"))
