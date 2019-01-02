@@ -14,7 +14,7 @@ class Mysql(object):
                 charset='utf8')
             self.cur = self.db.cursor()
         except pymysql.Error as e:
-            print('连接数据库失败')
+            print('连接数据库失败', e[0], e[1])
 
     def insert_data_to_pages(self,my_dict):
         sql = "insert into pages(scatalogid,title,href,content,fullcontent) " \
