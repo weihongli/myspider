@@ -16,18 +16,11 @@ class Mysql(object):
         except pymysql.Error as e:
             print('连接数据库失败')
 
-
     def insert_data_to_pages(self,my_dict):
-        for i in my_dict.values():
-            print(i)
-        for i in my_dict.keys():
-            print(i)
         sql = "insert into pages(scatalogid,title,href,content,fullcontent) " \
               "values(%(scatalogid)s,%(title)s,%(href)s,%(content)s,%(fullcontent)s)"
-        print(sql)
-        print("-"*20)
         try:
-            result = self.cur.execute(sql,my_dict)
+            result = self.cur.execute(sql, my_dict)
             self.db.commit()
             if result:
                 return 1

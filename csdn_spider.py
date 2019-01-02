@@ -3,7 +3,7 @@ import time
 from lxml import etree
 from MysqlClass import Mysql
 from Settings.DBSettings import DATABASES
-
+import re
 
 def getpage(url, datadict):
 	time.sleep(1)
@@ -31,7 +31,7 @@ def save2db(url, titlelist, hreflist, scatalogid):
 					"href": hreflist[i],
 					"scatalogid": scatalogid,
 					"fullcontent": getmaincontenthtml(hreflist[i]),
-					"content": ""}
+					"content": getmaincontent(hreflist[i])}
 		mysql.insert_data_to_pages(my_dict=datadict)
 
 
@@ -41,6 +41,23 @@ def getmaincontenthtml(url):
 	result = html.xpath("//div[@id='article_content']")
 	ans = ""
 	for i in result:
-		tmp = etree.tostring(i,encoding="utf-8")
-		ans += tmp.decode("utf-8").replace("&lt;", "<").replace("&gt;", ">").replace(" ", "")
+		tmp = etree.tostring(i, encoding="utf-8")
+		tmp = tmp.decode("utf-8").replace("&lt;", "<").replace("&gt;", ">").replace("\t", " ").replace("\n", " ")
+		tmp = re.sub(" +", " ", tmp)
+		ans += tmp
 	return ans
+
+
+def getmaincontent(url):
+	page = requests.get(url).text
+	html = etree.HTML(page)
+	result = html.xpath("//div[@id='article_content']")
+	if result == None:
+		return ""
+	tmp = result[0].xpath("string(.)")
+	for i in range(100):
+		tmp = tmp.replace("\t", " ")
+		tmp = tmp.replace("\r\n", "\n")
+		tmp = tmp.replace("\n\n", "\n")
+		tmp = tmp.replace("  ", " ")
+	return tmp
