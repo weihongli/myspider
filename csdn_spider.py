@@ -52,7 +52,7 @@ def getmaincontent(url):
 	page = requests.get(url).text
 	html = etree.HTML(page)
 	result = html.xpath("//div[@id='article_content']")
-	if result == None:
+	if result == None or len(result) <= 0:
 		return ""
 	tmp = result[0].xpath("string(.)")
 	for i in range(100):
