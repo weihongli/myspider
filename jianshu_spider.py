@@ -6,6 +6,7 @@ from collections import OrderedDict
 import Utils.utils as utils
 from MysqlClass import Mysql
 import json
+import time
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:49.0) Gecko/20100101 Firefox/49.0'}
 
@@ -13,6 +14,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:49.0)
 def get_json_resultlist(datadict):
     base_url = 'https://www.jianshu.com/search/do?'
     # data = urllib.parse.urlencode(datadict)
+    time.sleep(3)
     html = requests.post(base_url, data=datadict, headers=headers).text
     result = json.loads(html, encoding="utf-8")
     if "error" in result.keys():

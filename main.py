@@ -16,8 +16,8 @@ if __name__ == '__main__':
 	for i in scatalog:
 		for p in range(PAGE):
 			data = {"q": i[2], "t": "blog", "p": p + 1}
-			#title, href = csdn_spider.getpage(datadict=data)
-			#csdn_spider.save2db(title, href, i[0])
+			title, href = csdn_spider.getpage(datadict=data)
+			csdn_spider.save2db(title, href, i[0])
 	# 再利用关键词搜索功能从简书上爬取内容
 	for i in scatalog:
 		for p in range(PAGE):
