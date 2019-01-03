@@ -13,4 +13,3 @@ for i in result:
 		data = {"q": i[2], "t": "blog", "p": p + 1}
 		title, href = csdn_spider.getpage(datadict=data)
 		csdn_spider.save2db(title, href, i[0])
-
