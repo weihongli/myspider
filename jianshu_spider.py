@@ -43,7 +43,7 @@ def getmaincontenthtml(url):
         tmp = tmp.decode("utf-8").replace("&lt;", "<").replace("&gt;", ">")
         tmp = utils.dealstring(tmp)
         ans += tmp
-    print(ans)
+    # print(ans)
     return ans
 
 
@@ -55,5 +55,5 @@ def getmaincontent(url):
         return ""
     tmp = result[0].xpath("string(.)")
     tmp = utils.dealstring(tmp)
-    print(tmp)
+    # print(tmp)
     return tmp
