@@ -34,9 +34,9 @@ class Mysql(object):
             else:
                 print("插入数据失败，原因 %d: %s" % (e.args[0], e.args[1]))
 
-    def find_data(self, table):
+    def find_data(self, tablename):
         try:
-            sql = "select * from {0}".format(table)
+            sql = "select * from %s" % tablename
             self.cur.execute(sql)
             result = self.cur.fetchall()
             return result

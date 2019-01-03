@@ -22,11 +22,11 @@ user = DATABASES['default']['USER']
 passwd = DATABASES['default']['PASSWORD']
 db = DATABASES['default']['NAME']
 port = DATABASES['default']['PORT']
-Mysql(host=host, user=user, passwd=passwd, db=db, port=port)
+Mysql()
 
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:49.0) Gecko/20100101 Firefox/49.0'}
 
-import re
-print("\n")
-
+html = requests.get("https://www.jianshu.com/p/46d260f1a974")
+print(html.text)
 
 

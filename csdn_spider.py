@@ -2,6 +2,7 @@ import requests
 import time
 from lxml import etree
 from MysqlClass import Mysql
+import Utils.utils as utils
 import re
 
 
@@ -55,12 +56,8 @@ def getmaincontenthtml(url):
 	ans = ""
 	for i in result:
 		tmp = etree.tostring(i, encoding="utf-8")
-		tmp = tmp.decode("utf-8").replace("&lt;", "<").replace("&gt;", ">").replace("\t", " ").replace("\n", " ")
-		for _ in range(100):
-			tmp = tmp.replace("\t", " ")
-			tmp = tmp.replace("\r\n", "\n")
-			tmp = tmp.replace("\n\n", "\n")
-			tmp = tmp.replace("  ", " ")
+		tmp = tmp.decode("utf-8").replace("&lt;", "<").replace("&gt;", ">")
+		tmp = utils.dealstring(tmp)
 		ans += tmp
 	return ans
 
@@ -77,9 +74,5 @@ def getmaincontent(url):
 	if result is None or len(result) <= 0:
 		return ""
 	tmp = result[0].xpath("string(.)")
-	for i in range(100):
-		tmp = tmp.replace("\t", " ")
-		tmp = tmp.replace("\r\n", "\n")
-		tmp = tmp.replace("\n\n", "\n")
-		tmp = tmp.replace("  ", " ")
+	tmp = utils.dealstring(tmp)
 	return tmp
