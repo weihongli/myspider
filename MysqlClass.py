@@ -1,22 +1,23 @@
 import pymysql
+from Settings.DBSettings import DATABASES
 
 
 class Mysql(object):
 
-    def __init__(self, host, user, passwd, db, port):
+    def __init__(self):
         try:
             self.db = pymysql.connect(
-                host=host,
-                user=user,
-                passwd=passwd,
-                db=db,
-                port=port,
+                host=DATABASES['default']['HOST'],
+                user=DATABASES['default']['USER'],
+                passwd=DATABASES['default']['PASSWORD'],
+                db=DATABASES['default']['NAME'],
+                port=DATABASES['default']['PORT'],
                 charset='utf8')
             self.cur = self.db.cursor()
         except pymysql.Error as e:
             print('连接数据库失败', e.args[0], e.args[1])
 
-    def insert_data_to_pages(self,my_dict):
+    def insert_data_to_pages(self, my_dict):
         sql = "insert into pages(scatalogid,title,href,content,fullcontent) " \
               "values(%(scatalogid)s,%(title)s,%(href)s,%(content)s,%(fullcontent)s)"
         try:
