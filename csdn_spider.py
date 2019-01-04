@@ -36,11 +36,11 @@ def save2db(titlelist, urllist, scatalogid):
 		return None
 	mysql = Mysql()
 	for i in range(len(titlelist)):
-		datadict = {"title": titlelist[i],
-					"href": urllist[i],
+		datadict = {"title": titlelist[i].encode("utf-8"),
+					"href": urllist[i].encode("utf-8"),
 					"scatalogid": scatalogid,
-					"fullcontent": getmaincontenthtml(urllist[i]),
-					"content": getmaincontent(urllist[i])}
+					"fullcontent": getmaincontenthtml(urllist[i]).encode("utf-8"),
+					"content": getmaincontent(urllist[i]).encode("utf-8")}
 		mysql.insert_data_to_pages(my_dict=datadict)
 
 
@@ -52,7 +52,7 @@ def getmaincontenthtml(url):
 	"""
 	page = requests.get(url).text
 	html = etree.HTML(page)
-	result = html.xpath("//div[@id='article_content']")
+	result = html.xpath("//div[@id='content_views']")
 	ans = ""
 	for i in result:
 		tmp = etree.tostring(i, encoding="utf-8")
@@ -70,7 +70,7 @@ def getmaincontent(url):
 	"""
 	page = requests.get(url).text
 	html = etree.HTML(page)
-	result = html.xpath("//div[@id='article_content']")
+	result = html.xpath("//div[@id='content_views']")
 	if result is None or len(result) <= 0:
 		return ""
 	tmp = result[0].xpath("string(.)")
