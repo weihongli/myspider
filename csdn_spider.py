@@ -3,7 +3,6 @@ import time
 from lxml import etree
 from MysqlClass import Mysql
 import Utils.utils as utils
-import re
 
 
 def getpage(datadict):

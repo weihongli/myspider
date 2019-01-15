@@ -1,7 +1,5 @@
 import requests
 from lxml import etree
-import urllib.parse
-import time
 from collections import OrderedDict
 import Utils.utils as utils
 from MysqlClass import Mysql
