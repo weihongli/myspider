@@ -2,7 +2,7 @@ import requests
 from lxml import etree
 from collections import OrderedDict
 import Utils.utils as utils
-from MysqlClass import Mysql
+from Utils.MysqlClass import Mysql
 import json
 import time
 

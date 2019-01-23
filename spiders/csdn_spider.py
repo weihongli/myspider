@@ -1,7 +1,7 @@
 import requests
 import time
 from lxml import etree
-from MysqlClass import Mysql
+from Utils.MysqlClass import Mysql
 import Utils.utils as utils
 
 

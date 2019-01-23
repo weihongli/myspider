@@ -1,7 +1,6 @@
-import csdn_spider
-from MysqlClass import Mysql
+from Utils.MysqlClass import Mysql
 from Settings import Configuration
-import jianshu_spider
+from spiders import jianshu_spider, csdn_spider
 
 PAGE = Configuration.PAGE
 
