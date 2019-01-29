@@ -10,7 +10,7 @@ define("port", default=8082)
 
 class pageHandler(tornado.web.RequestHandler):
 	def get(self):
-		self.render("form.html",Ans="")
+		self.render("form.html", Ans="")
 
 	def post(self):
 		num1 = int(self.get_argument("number1"))
