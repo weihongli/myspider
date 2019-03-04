@@ -2,14 +2,15 @@ from Utils.MysqlClass import Mysql
 from Settings import Configuration
 from spiders import jianshu_spider, csdn_spider
 
+# 定义爬取网页搜索结果的前多少页
 PAGE = Configuration.PAGE
 
 if __name__ == '__main__':
 	mysql = Mysql()
-	scatalog = mysql.find_data("scatalog")
+	scatalog = mysql.find_last_level_catalog()
 	# 先利用关键词搜索功能从csdn上爬取内容
 	if scatalog is None:
-		print("未查询到次级目录")
+		print("未查询到目录")
 		exit(0)
 
 	for i in scatalog:

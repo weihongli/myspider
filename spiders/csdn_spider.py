@@ -37,7 +37,7 @@ def save2db(titlelist, urllist, scatalogid):
 	for i in range(len(titlelist)):
 		datadict = {"title": titlelist[i].encode("utf-8"),
 					"href": urllist[i].encode("utf-8"),
-					"scatalogid": scatalogid,
+					"preid": scatalogid,
 					"fullcontent": getmaincontenthtml(urllist[i]).encode("utf-8"),
 					"content": getmaincontent(urllist[i]).encode("utf-8")}
 		mysql.insert_data_to_pages(my_dict=datadict)

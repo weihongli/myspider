@@ -25,7 +25,7 @@ def save2db(mydict, scatalogid):
     article = OrderedDict()
     for tag in mydict['entries']:
         article['title'] = utils.dealstring(etree.HTML(tag['title']).xpath("string(.)"))
-        article['scatalogid'] = scatalogid
+        article['preid'] = scatalogid
         article['href'] = "https://www.jianshu.com/p/" + tag["slug"]
         article['fullcontent'] = getmaincontenthtml(article['href'])
         article['content'] = getmaincontent(article['href'])
