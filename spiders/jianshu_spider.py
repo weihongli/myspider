@@ -5,7 +5,7 @@ import Utils.utils as utils
 from Utils.MysqlClass import Mysql
 import json
 import time
-
+from Utils.XmlController import deal_img_jianshu
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:49.0) Gecko/20100101 Firefox/49.0'}
 
 
@@ -44,6 +44,7 @@ def getmaincontenthtml(url):
         tmp = utils.dealstring(tmp)
         ans += tmp
     # print(ans)
+    ans = deal_img_jianshu(ans)
     return ans
 
 
